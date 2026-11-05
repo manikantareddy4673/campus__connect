@@ -88,13 +88,39 @@ def health_check() -> Response:
     return jsonify({"status": "ok"})
 
 
+def events_database_error(error: APIError) -> tuple[Response, int]:
+    if error.code == "PGRST205":
+        message = (
+            "Supabase is missing public.campus_events. Set SUPABASE_URL to the "
+            "EventHub project and apply its database migration."
+        )
+        status = 503
+    elif error.code == "42501":
+        message = (
+            "Supabase cannot read public.campus_events. Apply the EventHub "
+            "database migration to grant public event access."
+        )
+        status = 503
+    else:
+        message = "Failed to load events."
+        status = 500
+
+    app.logger.error("Event query failed (PostgREST %s): %s", error.code, error.message)
+    return jsonify({"error": message}), status
+
+
 @app.get("/api/events")
 def list_events() -> Response | tuple[Response, int]:
     try:
-        response = supabase.table("events").select("*").execute()
-    except APIError:
-        app.logger.exception("Failed to load events.")
-        return jsonify({"error": "Failed to load events."}), 500
+        response = (
+            supabase.table("campus_events")
+            .select("*")
+            .eq("is_published", True)
+            .order("starts_at")
+            .execute()
+        )
+    except APIError as error:
+        return events_database_error(error)
 
     return jsonify(response.data)
 
@@ -103,14 +129,22 @@ def list_events() -> Response | tuple[Response, int]:
 def get_event(event_id: str) -> Response | tuple[Response, int]:
     try:
         response = (
-            supabase.table("events")
+            supabase.table("campus_events")
             .select("*")
             .eq("id", event_id)
+            .eq("is_published", True)
             .limit(1)
             .execute()
         )
-    except APIError:
-        app.logger.exception("Failed to load event %s.", event_id)
+    except APIError as error:
+        if error.code in {"PGRST205", "42501"}:
+            return events_database_error(error)
+        app.logger.error(
+            "Event query failed for %s (PostgREST %s): %s",
+            event_id,
+            error.code,
+            error.message,
+        )
         return jsonify({"error": "Failed to load event."}), 500
 
     if not response.data:
