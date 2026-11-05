@@ -186,6 +186,20 @@ function App() {
     navigate('detail')
   }
 
+  function updateEventCapacity(eventId, registeredCount, seatsLeft) {
+    const updateCounts = (event) => ({
+      ...event,
+      registered_count: registeredCount,
+      seats_left: seatsLeft,
+    })
+    setEvents((current) =>
+      current.map((event) => event.id === eventId ? updateCounts(event) : event),
+    )
+    setActiveEvent((current) =>
+      current?.id === eventId ? updateCounts(current) : current,
+    )
+  }
+
   async function registerFor(event) {
     if (registrations.some((registration) => registration.id === event.id)) {
       setNotice('You’re already registered for this event.')
@@ -210,6 +224,14 @@ function App() {
         const record = await api.createRegistration(session.access_token, {
           event_id: event.id,
         })
+        const capacity = getCapacity(event)
+        const registeredCount = Number.isFinite(Number(record.registered_count))
+          ? Number(record.registered_count)
+          : Math.min(capacity.capacity, capacity.registered + 1)
+        const seatsLeft = Number.isFinite(Number(record.seats_left))
+          ? Number(record.seats_left)
+          : Math.max(0, capacity.capacity - registeredCount)
+        updateEventCapacity(event.id, registeredCount, seatsLeft)
         const registration = {
           ...event,
           id: event.id,
@@ -218,28 +240,11 @@ function App() {
           payment_method: record.payment_method,
           amount_due: record.amount_due,
           registered_at: record.created_at,
-          registered_count: record.registered_count,
-          seats_left: record.seats_left,
+          registered_count: registeredCount,
+          seats_left: seatsLeft,
         }
-        setEvents((current) => current.map((item) =>
-          item.id === event.id
-            ? {
-                ...item,
-                registered_count: record.registered_count,
-                seats_left: record.seats_left,
-              }
-            : item,
-        ))
-        setActiveEvent((current) => current?.id === event.id
-          ? {
-              ...current,
-              registered_count: record.registered_count,
-              seats_left: record.seats_left,
-            }
-          : current)
         setRegistrations((current) => [registration, ...current.filter((item) => item.id !== event.id)])
         setNotice(`Registration confirmed — ${record.confirmation_code}`)
-        navigate('registrations')
       } catch (error) {
         if (error.status === 401) {
           setSession(null)
@@ -257,9 +262,20 @@ function App() {
       confirmation_code: `EH-${Math.random().toString(36).slice(2, 8).toUpperCase()}`,
       preview_only: true,
     }
+    const capacity = getCapacity(event)
+    if (capacity.left === 0) {
+      setNotice('This event is full.')
+      return
+    }
+    updateEventCapacity(
+      event.id,
+      capacity.registered + 1,
+      capacity.left - 1,
+    )
+    registration.registered_count = capacity.registered + 1
+    registration.seats_left = capacity.left - 1
     setRegistrations((current) => [registration, ...current])
     setNotice(`Preview only — this registration was not saved to the backend (${registration.confirmation_code}).`)
-    navigate('registrations')
   }
 
   async function submitAuth({ email, password }) {
