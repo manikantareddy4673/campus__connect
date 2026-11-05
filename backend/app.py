@@ -1,6 +1,8 @@
 import os
+import secrets
 
 from dotenv import load_dotenv
+from flask_cors import CORS
 from flask import Flask, Response, jsonify, request
 from postgrest import APIError
 from supabase import Client, ClientOptions, create_client
@@ -21,7 +23,53 @@ if not SUPABASE_URL or not SUPABASE_PUBLISHABLE_KEY:
     )
 
 app = Flask(__name__)
+allowed_origins = [
+    origin.strip()
+    for origin in os.environ.get(
+        "FRONTEND_ORIGINS",
+        "http://localhost:5173,http://127.0.0.1:5173,"
+        "http://localhost:5174,http://127.0.0.1:5174",
+    ).split(",")
+    if origin.strip()
+]
+CORS(
+    app,
+    resources={r"/api/*": {"origins": allowed_origins}},
+    methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Content-Type", "Authorization"],
+)
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY)
+
+
+def create_auth_client() -> Client:
+    return create_client(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY,
+        ClientOptions(auto_refresh_token=False, persist_session=False),
+    )
+
+
+def get_auth_credentials() -> tuple[str | None, str | None, tuple[Response, int] | None]:
+    payload = request.get_json(silent=True)
+    if not isinstance(payload, dict):
+        return None, None, (jsonify({"error": "A JSON request body is required."}), 400)
+
+    email = payload.get("email")
+    password = payload.get("password")
+    if not isinstance(email, str) or not email.strip():
+        return None, None, (jsonify({"error": "A valid email is required."}), 400)
+    if not isinstance(password, str) or not password:
+        return None, None, (jsonify({"error": "A password is required."}), 400)
+
+    return email.strip(), password, None
+
+
+def auth_error_response(error: AuthApiError) -> tuple[Response, int]:
+    if 400 <= error.status < 500:
+        return jsonify({"error": error.message}), error.status
+
+    app.logger.error("Supabase authentication failed with status %s.", error.status)
+    return jsonify({"error": "Authentication service unavailable."}), 503
 
 
 def get_authenticated_context() -> (
@@ -64,9 +112,77 @@ def get_authenticated_context() -> (
     authenticated_client = create_client(
         SUPABASE_URL,
         SUPABASE_PUBLISHABLE_KEY,
-        ClientOptions(headers={"Authorization": f"Bearer {access_token}"}),
+        ClientOptions(
+            headers={"Authorization": f"Bearer {access_token}"},
+            auto_refresh_token=False,
+            persist_session=False,
+        ),
     )
+    authenticated_client.postgrest.auth(access_token)
     return authenticated_client, user_response.user.id, None
+
+
+@app.post("/api/auth/signup")
+def sign_up() -> Response | tuple[Response, int]:
+    email, password, validation_error = get_auth_credentials()
+    if validation_error is not None:
+        return validation_error
+
+    try:
+        result = create_auth_client().auth.sign_up(
+            {"email": email, "password": password}
+        )
+    except AuthApiError as error:
+        return auth_error_response(error)
+    except AuthRetryableError:
+        app.logger.exception("Supabase authentication service is unavailable.")
+        return jsonify({"error": "Authentication service unavailable."}), 503
+
+    user = result.user
+    session = result.session
+    if session is None:
+        return jsonify(
+            {
+                "requires_email_confirmation": True,
+                "user": {"id": user.id, "email": user.email} if user else None,
+            }
+        ), 201
+
+    return jsonify(
+        {
+            "access_token": session.access_token,
+            "refresh_token": session.refresh_token,
+            "user": {"id": user.id, "email": user.email} if user else None,
+        }
+    ), 201
+
+
+@app.post("/api/auth/login")
+def sign_in() -> Response | tuple[Response, int]:
+    email, password, validation_error = get_auth_credentials()
+    if validation_error is not None:
+        return validation_error
+
+    try:
+        result = create_auth_client().auth.sign_in_with_password(
+            {"email": email, "password": password}
+        )
+    except AuthApiError as error:
+        return auth_error_response(error)
+    except AuthRetryableError:
+        app.logger.exception("Supabase authentication service is unavailable.")
+        return jsonify({"error": "Authentication service unavailable."}), 503
+
+    if result.session is None or result.user is None:
+        return jsonify({"error": "Authentication did not return a user session."}), 502
+
+    return jsonify(
+        {
+            "access_token": result.session.access_token,
+            "refresh_token": result.session.refresh_token,
+            "user": {"id": result.user.id, "email": result.user.email},
+        }
+    )
 
 
 @app.get("/api/users")
@@ -167,20 +283,26 @@ def create_registration() -> Response | tuple[Response, int]:
     event_id = payload["event_id"].strip()
     if not event_id:
         return jsonify({"error": "A string event_id is required."}), 400
+    payment_method = payload.get("payment_method")
+    if payment_method not in {None, "UPI", "Card", "Net Banking", "Wallet"}:
+        return jsonify({"error": "Unsupported payment method."}), 400
 
     try:
         event_response = (
-            client.table("events")
-            .select("id")
+            client.table("campus_events")
+            .select("id,seats_left")
             .eq("id", event_id)
+            .eq("is_published", True)
             .limit(1)
             .execute()
         )
         if not event_response.data:
             return jsonify({"error": "Event not found."}), 404
+        if event_response.data[0]["seats_left"] <= 0:
+            return jsonify({"error": "This event is full."}), 409
 
         existing_response = (
-            client.table("registrations")
+            client.table("campus_registrations")
             .select("id")
             .eq("event_id", event_id)
             .eq("user_id", user_id)
@@ -191,13 +313,23 @@ def create_registration() -> Response | tuple[Response, int]:
             return jsonify({"error": "You are already registered for this event."}), 409
 
         response = (
-            client.table("registrations")
-            .insert({"event_id": event_id, "user_id": user_id})
+            client.table("campus_registrations")
+            .insert(
+                {
+                    "event_id": event_id,
+                    "user_id": user_id,
+                    "confirmation_code": f"EH-{secrets.token_hex(4).upper()}",
+                    "payment_method": payment_method,
+                }
+            )
+            .select("*")
             .execute()
         )
     except APIError as error:
         if error.code == "23505":
             return jsonify({"error": "You are already registered for this event."}), 409
+        if error.code == "P0001":
+            return jsonify({"error": error.message or "This event is full."}), 409
         app.logger.exception("Failed to create registration.")
         return jsonify({"error": "Failed to create registration."}), 500
 
@@ -217,9 +349,10 @@ def get_my_registrations() -> Response | tuple[Response, int]:
 
     try:
         response = (
-            client.table("registrations")
-            .select("id,event_id,user_id,created_at")
+            client.table("campus_registrations")
+            .select("*")
             .eq("user_id", user_id)
+            .order("created_at", desc=True)
             .execute()
         )
     except APIError:
@@ -231,35 +364,14 @@ def get_my_registrations() -> Response | tuple[Response, int]:
 
 @app.get("/api/events/<event_id>/registrations")
 def get_event_registrations(event_id: str) -> Response | tuple[Response, int]:
-    client, user_id, auth_error = get_authenticated_context()
-    if auth_error is not None:
-        return auth_error
-    assert client is not None and user_id is not None
-
-    try:
-        event_response = (
-            client.table("events")
-            .select("organizer_id")
-            .eq("id", event_id)
-            .limit(1)
-            .execute()
-        )
-        if not event_response.data:
-            return jsonify({"error": "Event not found."}), 404
-        if event_response.data[0]["organizer_id"] != user_id:
-            return jsonify({"error": "Only the event organizer can view registrations."}), 403
-
-        response = (
-            client.table("registrations")
-            .select("id,event_id,user_id,created_at")
-            .eq("event_id", event_id)
-            .execute()
-        )
-    except APIError:
-        app.logger.exception("Failed to load registrations for event %s.", event_id)
-        return jsonify({"error": "Failed to load event registrations."}), 500
-
-    return jsonify(response.data)
+    return jsonify(
+        {
+            "error": (
+                "Organizer attendee access is unavailable until the database "
+                "supports event ownership and organizer-only registration access."
+            )
+        }
+    ), 501
 
 
 if __name__ == "__main__":

@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"on-primary-container":"#dad7ff","inverse-surface":"#213145","primary":"#3525cd","surface":"#f8f9ff","on-surface":"#0b1c30","outline-variant":"#c7c4d8","tertiary-fixed":"#dbe1ff","secondary-container":"#39b8fd","surface-tint":"#4d44e3","surface-container-highest":"#d3e4fe","secondary-fixed":"#c9e6ff","on-tertiary-fixed":"#00174b","on-error-container":"#93000a","on-tertiary-fixed-variant":"#003ea8","on-surface-variant":"#464555","on-tertiary-container":"#d1daff","surface-container-lowest":"#ffffff","surface-dim":"#cbdbf5","outline":"#777587","on-background":"#0b1c30","on-error":"#ffffff","surface-container":"#e5eeff","on-secondary-fixed":"#001e2f","surface-container-low":"#eff4ff","tertiary-fixed-dim":"#b4c5ff","on-tertiary":"#ffffff","secondary":"#006591","on-secondary":"#ffffff","error":"#ba1a1a","surface-variant":"#d3e4fe","surface-container-high":"#dce9ff","secondary-fixed-dim":"#89ceff","inverse-primary":"#c3c0ff","on-primary-fixed-variant":"#3323cc","surface-bright":"#f8f9ff","tertiary-container":"#0555dd","error-container":"#ffdad6","primary-fixed":"#e2dfff","on-primary":"#ffffff","inverse-on-surface":"#eaf1ff","primary-fixed-dim":"#c3c0ff","tertiary":"#003fac","on-primary-fixed":"#0f0069","on-secondary-container":"#004666","on-secondary-fixed-variant":"#004c6e","background":"#f8f9ff","primary-container":"#4f46e5"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"margin-desktop":"3rem","margin-mobile":"1rem","space-lg":"1.5rem","gutter-sm":"1rem","space-xl":"2.5rem","space-xs":"0.25rem","space-sm":"0.5rem","margin":"2rem","gutter":"1.5rem","gutter-lg":"2rem","space-md":"1rem"},"fontFamily":{"label-md":["Inter"],"headline-lg":["Inter"],"display-lg-mobile":["Inter"],"headline-xl-mobile":["Inter"],"headline-xl":["Inter"],"label-lg":["Inter"],"label-sm":["Inter"],"body-md":["Inter"],"headline-md":["Inter"],"body-sm":["Inter"],"headline-sm":["Inter"],"display-lg":["Inter"],"body-lg":["Inter"]},"fontSize":{"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"600"}],"display-lg-mobile":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-xl-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.025em","fontWeight":"700"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.01em","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"700"}],"body-md":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"headline-md":["22px",{"lineHeight":"30px","letterSpacing":"-0.015em","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"400"}],"headline-sm":["18px",{"lineHeight":"26px","letterSpacing":"-0.01em","fontWeight":"600"}],"display-lg":["48px",{"lineHeight":"56px","letterSpacing":"-0.03em","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"-0.005em","fontWeight":"400"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest border-b border-surface-container shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-sm" href="#"><img alt="EventHub Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VFxHpkZAzvW_NsyuXhzUCP8dUwQYx43xXmJAWVKHLxoKfE6PSPDbH_2ksc_NKUzSl5DIq-YlLy9d41Q4FolQh7YV7_MmH6DaMkIxBX0cnuqrZj3nyImG-SM-JOZOfWCas9mLU-oH8tOwhkcpnye5_1SXCCc0fsUACFa-YGIOrcsrEzcfhOKYHmx2umdNgyiUtbhMPmPZiMN9kBkRuQgYw2JHnNSYhnxsyVx16FqOt4mw"/><span class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight">EventHub</span></a><div class="relative hidden lg:block w-72"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg pointer-events-none">search</span><input class="w-full pl-9 pr-8 py-2 bg-surface-container-low border border-surface-container rounded-lg font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" placeholder="Search campus events..." type="text"/><span class="absolute right-2.5 top-1/2 -translate-y-1/2 font-label-sm text-label-sm text-outline border border-surface-container px-1.5 py-0.5 rounded bg-surface-container-lowest">⌘K</span></div></div><nav class="hidden xl:flex items-center gap-space-md" data-active-classes="text-primary font-bold"><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="landing" href="#">Landing</a><a aria-current="page" class="transition-colors py-1 text-primary font-bold" data-path="browse-events" href="#">Browse Events</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="student-dashboard" href="#">Student Dashboard</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="my-registrations" href="#">My Registrations</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="organizer-dashboard" href="#">Organizer Dashboard</a></nav><div class="flex items-center gap-space-sm sm:gap-space-md"><div class="flex items-center bg-surface-container-low p-1 rounded-full border border-surface-container"><button class="px-3 py-1 rounded-full font-label-sm text-label-sm bg-surface-container-lowest text-primary shadow-sm font-semibold transition-all" type="button">Student</button><button class="px-3 py-1 rounded-full font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-all" type="button">Organizer</button></div><button aria-label="Notifications" class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-xl">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full ring-2 ring-surface-container-lowest"></span></button><div class="flex items-center gap-space-xs pl-space-xs border-l border-surface-container"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-surface-container-high" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvSmUqAESB_nD7eqBaFBiHRtP50wdeBGXP_7MiPirO3GI0qEw__5fVyaF0rOo2VcUv_B_MYjsLbOkAeLX_kYnO2L8_XMHUlKzruT75ody5PVb1DJnQ1Nnx1wZAARoA-GVTsbptkoVBL-dr4i0o95T_HhcgdmB5gf3v8I0vLjaD1huPPLXwT_RmiUQ1qVsbpAN_Ag267_F8138Y9lMdM78jG4bMfc2tZaMY5Hyt48Rk"/></div></div></div></header><main class="w-full pt-16 bg-surface"><div class="flex flex-col w-full">
+<!-- Notification Toast Banner (201 Created Feedback preview) -->
+<div class="bg-primary text-on-primary py-3 px-6 shadow-md transition-all duration-300" id="toastSuccess">
+<div class="max-w-7xl mx-auto flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary-container" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div>
+<span class="font-label-md text-label-md tracking-wider uppercase text-secondary-fixed">HTTP 201 Created</span>
+<p class="font-body-sm text-body-sm text-surface-container-low font-medium">Registration Confirmed! Digital badge & confirmation dispatched to <span class="font-bold underline text-surface-container-lowest">maya.patel@campus.edu</span></p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="hidden md:inline-block font-label-sm text-label-sm px-2.5 py-1 rounded bg-white/10 text-on-primary-container">Idempotency-Key: #reg-tx-84920</span>
+<button aria-label="Dismiss banner" class="text-on-primary/80 hover:text-on-primary p-1 rounded transition-colors" onclick="document.getElementById('toastSuccess').classList.add('hidden')">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Breadcrumbs & Event Hero Section -->
+<div class="relative bg-surface-container-low py-8 px-6 lg:px-12 overflow-hidden">
+<div class="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-gradient-to-br from-primary/10 via-secondary-container/15 to-transparent blur-3xl pointer-events-none"></div>
+<div class="max-w-7xl mx-auto flex flex-col gap-space-md relative z-10">
+<!-- Breadcrumb Navigation -->
+<nav aria-label="Breadcrumb" class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-sm">home</span>Events
+        </a>
+<span class="text-outline-variant font-bold">/</span>
+<a class="hover:text-primary transition-colors" href="#">Technology</a>
+<span class="text-outline-variant font-bold">/</span>
+<span class="text-on-surface truncate font-semibold">Annual Intercollegiate Hackathon 2025</span>
+</nav>
+<!-- Hero Header & Meta Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start pt-2">
+<div class="lg:col-span-8 flex flex-col gap-space-sm">
+<!-- Badges Cluster -->
+<div class="flex flex-wrap items-center gap-2">
+<span class="font-label-sm text-label-sm px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed uppercase tracking-wider font-bold">
+              Technology & Innovation
+            </span>
+<span class="inline-flex items-center gap-1.5 font-label-sm text-label-sm px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-bold uppercase tracking-wider">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+              Open For Registration
+            </span>
+<span class="font-label-sm text-label-sm px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-medium">
+              In-Person + Hack Lounge
+            </span>
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container-high text-primary font-bold">
+              $5,000 Prize Pool
+            </span>
+</div>
+<!-- Main Title -->
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight leading-tight">
+            Annual Intercollegiate Hackathon 2025: <span class="text-primary">Build with AI</span>
+</h1>
+<!-- Quick Date / Venue Ribbon -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm mt-3 pt-2">
+<div class="flex items-start gap-3 p-3 rounded-lg bg-surface-container-lowest shadow-sm">
+<div class="p-2 rounded-md bg-surface-container text-primary">
+<span class="material-symbols-outlined text-xl">calendar_month</span>
+</div>
+<div class="min-w-0">
+<p class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Date & Time</p>
+<p class="font-label-lg text-label-lg text-on-surface font-semibold truncate">Fri, Oct 24 – Sun, Oct 26, 2025</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">9:00 AM Fri – 6:00 PM EST Sun</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-3 rounded-lg bg-surface-container-lowest shadow-sm">
+<div class="p-2 rounded-md bg-secondary-fixed text-on-secondary-fixed">
+<span class="material-symbols-outlined text-xl">location_on</span>
+</div>
+<div class="min-w-0">
+<p class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Location</p>
+<p class="font-label-lg text-label-lg text-on-surface font-semibold truncate">Student Engineering Quad</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Innovation Lab, Building 4 & Grand Atrium</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Hero Capacity & Organizer Fast Card -->
+<div class="lg:col-span-4 flex flex-col gap-space-sm">
+<!-- Capacity Gauge Card -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface font-bold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-base">group</span>
+                Live Seat Tracker
+              </span>
+<span class="font-label-sm text-label-sm text-primary font-bold px-2 py-0.5 rounded bg-primary-fixed">78% Filled</span>
+</div>
+<div>
+<div class="flex items-baseline justify-between mb-1.5">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">312 <span class="font-body-sm text-body-sm text-on-surface-variant font-normal">registered</span></span>
+<span class="font-label-sm text-label-sm text-outline">400 Max Capacity</span>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-2.5 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-secondary-container rounded-full transition-all duration-700" style="width: 78%;"></div>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-base text-secondary">verified_user</span>
+              Registration guaranteed for enrolled students with .edu ID.
+            </p>
+</div>
+<!-- Organizer Compact Card -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary font-bold font-headline-sm shrink-0">
+<span class="material-symbols-outlined text-2xl">code_blocks</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<h4 class="font-label-lg text-label-lg text-on-surface font-bold truncate">ACM & GDSC Campus</h4>
+<span class="material-symbols-outlined text-primary text-base shrink-0" style="font-variation-settings: 'FILL' 1;" title="Verified Campus Chapter">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">acm-events@campus.edu</p>
+</div>
+</div>
+<div class="text-right shrink-0">
+<span class="font-label-sm text-label-sm block text-outline">Portfolio</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">14 Events</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Body Content: Two-Column Split Architecture -->
+<div class="max-w-7xl mx-auto w-full px-6 lg:px-12 py-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+<!-- Left Column: Detailed Content (8 cols) -->
+<div class="lg:col-span-8 flex flex-col gap-8">
+<!-- Visual Event Banner -->
+<div class="relative w-full h-80 rounded-2xl overflow-hidden shadow-sm bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Dynamic collegiate hackathon venue filled with engineering students collaborating around laptops, neon ambient violet and blue stadium lights, futuristic digital sponsor screens, whiteboards filled with neural network diagrams, professional modern university atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiYl_646PXNUNJAuQGreQDYaeaGFmvJVqgqvYaSdG_iQBx9dYZ2hB8ni3OGjMj3up7YIS7WKPRkPDMf9oOK5SM00AAGEZ-CdjBmFFxYkH812Gxta-3gilbcVdSrtmtRDbgr7v5klh8ONQd81mBDlh_iiO-kkuREyaZBG6iFZHt3Qhx0HLz30LDXb1y3m_OndbW7nklgy866JoIywrJ42vqsRBqp1ugJrL1orcoq1lP"/>
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/80 via-transparent to-transparent flex items-end p-6">
+<div class="text-surface-container-lowest">
+<span class="font-label-sm text-label-sm uppercase tracking-wider px-2.5 py-1 rounded bg-primary-container text-white font-bold">Featured Flagship Event</span>
+<p class="font-headline-sm text-headline-sm font-bold mt-1 text-white">48 Hours of Brainstorming, Code & Hardware Deployment</p>
+</div>
+</div>
+</div>
+<!-- Section: Description & Mission -->
+<section class="flex flex-col gap-3">
+<div class="flex items-center gap-2">
+<span class="w-2 h-6 rounded-full bg-primary"></span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">About the Event</h2>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+            The Annual Intercollegiate Hackathon brings together over 400 passionate student developers, UX designers, machine learning researchers, and entrepreneurs across regional universities. Over 48 sleepless yet exhilarating hours, you will collaborate to engineer next-generation applications powered by modern generative AI, distributed systems, and real-time campus micro-utilities.
+          </p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Whether you are building your first API integration or fine-tuning edge multi-modal models, our on-site mentors from regional tech firms and campus faculty will guide your team from initial ideation to the final demo stage. Hardware kits, cloud infrastructure credits, and round-the-clock catering are fully provided.
+          </p>
+</section>
+<!-- Section: Key Highlights / Stats Bento -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="p-4 rounded-xl bg-surface-container-low flex flex-col gap-1">
+<span class="font-headline-md text-headline-md font-bold text-primary">$5,000</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Prize Pool Across 5 Tracks</span>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-low flex flex-col gap-1">
+<span class="font-headline-md text-headline-md font-bold text-primary">48 Hrs</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Non-Stop Mentorship</span>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-low flex flex-col gap-1">
+<span class="font-headline-md text-headline-md font-bold text-primary">12+</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Industry Mentors On-Site</span>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-low flex flex-col gap-1">
+<span class="font-headline-md text-headline-md font-bold text-primary">Free</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Meals & Swag Included</span>
+</div>
+</div>
+<!-- Section: Agenda Breakdown -->
+<section class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2 h-6 rounded-full bg-primary"></span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">3-Day Agenda Breakdown</h2>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">All Times EST</span>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Day 1 Card -->
+<div class="p-5 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col md:flex-row gap-4">
+<div class="md:w-36 shrink-0 flex md:flex-col justify-between md:justify-start gap-1">
+<span class="font-label-sm text-label-sm uppercase px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-bold self-start">Day 1</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Oct 24</span>
+<span class="font-body-sm text-body-sm text-outline">Kickoff & Teams</span>
+</div>
+<div class="flex-1 flex flex-col gap-3">
+<div class="flex items-start gap-3">
+<span class="font-label-sm text-label-sm text-primary font-bold mt-0.5 w-16 shrink-0">09:00 AM</span>
+<div>
+<h5 class="font-label-lg text-label-lg font-bold text-on-surface">Check-In & Hardware Badge Distribution</h5>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Building 4 Lobby. Receive swag pack, API tokens, and access credentials.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="font-label-sm text-label-sm text-primary font-bold mt-0.5 w-16 shrink-0">11:00 AM</span>
+<div>
+<h5 class="font-label-lg text-label-lg font-bold text-on-surface">Opening Keynote: Agentic Workflows with AI</h5>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Presented by Dr. Aris Thorne, Lead AI Researcher at Campus Innovation Labs.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="font-label-sm text-label-sm text-primary font-bold mt-0.5 w-16 shrink-0">01:30 PM</span>
+<div>
+<h5 class="font-label-lg text-label-lg font-bold text-on-surface">Team Mixer & Ideation Pitching</h5>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Solo registrants find groups (max 4 members per team). Official hacking begins at 2:00 PM.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Day 2 Card -->
+<div class="p-5 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col md:flex-row gap-4">
+<div class="md:w-36 shrink-0 flex md:flex-col justify-between md:justify-start gap-1">
+<span class="font-label-sm text-label-sm uppercase px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-bold self-start">Day 2</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Oct 25</span>
+<span class="font-body-sm text-body-sm text-outline">Hacking & Mentoring</span>
+</div>
+<div class="flex-1 flex flex-col gap-3">
+<div class="flex items-start gap-3">
+<span class="font-label-sm text-label-sm text-primary font-bold mt-0.5 w-16 shrink-0">10:00 AM</span>
+<div>
+<h5 class="font-label-lg text-label-lg font-bold text-on-surface">Round 1 Architecture Office Hours</h5>
+<p class="font-body-sm text-body-sm text-on-surface-variant">1-on-1 rapid consulting with cloud architects and ML engineers.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="font-label-sm text-label-sm text-primary font-bold mt-0.5 w-16 shrink-0">03:00 PM</span>
+<div>
+<h5 class="font-label-lg text-label-lg font-bold text-on-surface">Lightning Workshop: Zero-Shot Prompt Tooling</h5>
+<p class="font-body-sm text-body-sm text-on-surface-variant">30-minute interactive sprint session in Amphitheater B.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="font-label-sm text-label-sm text-primary font-bold mt-0.5 w-16 shrink-0">11:59 PM</span>
+<div>
+<h5 class="font-label-lg text-label-lg font-bold text-on-surface">Midnight Pizza & Code Checkpoint</h5>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Mid-way Git push checkpoint and game break in the Hack Lounge.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Day 3 Card -->
+<div class="p-5 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col md:flex-row gap-4">
+<div class="md:w-36 shrink-0 flex md:flex-col justify-between md:justify-start gap-1">
+<span class="font-label-sm text-label-sm uppercase px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-bold self-start">Day 3</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Oct 26</span>
+<span class="font-body-sm text-body-sm text-outline">Demos & Awards</span>
+</div>
+<div class="flex-1 flex flex-col gap-3">
+<div class="flex items-start gap-3">
+<span class="font-label-sm text-label-sm text-primary font-bold mt-0.5 w-16 shrink-0">12:00 PM</span>
+<div>
+<h5 class="font-label-lg text-label-lg font-bold text-on-surface">Code Freeze & Devpost Submission</h5>
+<p class="font-body-sm text-body-sm text-on-surface-variant">All repository links and pitch video recordings locked.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="font-label-sm text-label-sm text-primary font-bold mt-0.5 w-16 shrink-0">02:00 PM</span>
+<div>
+<h5 class="font-label-lg text-label-lg font-bold text-on-surface">Science-Fair Style Live Exposition</h5>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Public and judge reviews across 40 prototype booths in the Grand Atrium.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="font-label-sm text-label-sm text-primary font-bold mt-0.5 w-16 shrink-0">05:00 PM</span>
+<div>
+<h5 class="font-label-lg text-label-lg font-bold text-on-surface">Grand Awards Ceremony & Reception</h5>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Winner announcements across 5 tracks, $5,000 cash disbursements, and networking.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Prerequisites & Venue Map -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="p-space-lg rounded-xl bg-surface-container-low flex flex-col gap-3">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">checklist</span>
+              Prerequisites & Gear
+            </h3>
+<ul class="flex flex-col gap-2 font-body-sm text-body-sm text-on-surface-variant">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm mt-0.5">check</span>
+                Active University Student ID (enrolled undergraduate or graduate).
+              </li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm mt-0.5">check</span>
+                Laptop + power charger (loaner chargers available at info desk).
+              </li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm mt-0.5">check</span>
+                Valid GitHub account for project submission and check-ins.
+              </li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm mt-0.5">check</span>
+                Sleeping bag & toiletries if utilizing the overnight rest lounge.
+              </li>
+</ul>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-container-low flex flex-col gap-3">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">map</span>
+              Venue Location
+            </h3>
+<div class="w-full h-36 rounded-lg bg-surface-container shadow-inner flex items-center justify-center relative overflow-hidden" data-location="Student Engineering Quad & Innovation Lab, Building 4" style="background-image: url('https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg')">
+<div class="absolute inset-0 bg-on-surface/40 flex items-center justify-center">
+<div class="bg-surface-container-lowest px-3 py-1.5 rounded-lg shadow-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base">pin_drop</span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Building 4, Eng Quad</span>
+</div>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-outline">Accessible entrances via North Promenade. Transit lines 4, 8 & Campus Shuttle Blue Stop.</p>
+</div>
+</section>
+<!-- Section: FAQ Accordion -->
+<section class="flex flex-col gap-3">
+<div class="flex items-center gap-2">
+<span class="w-2 h-6 rounded-full bg-primary"></span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Frequently Asked Questions</h2>
+</div>
+<div class="flex flex-col gap-2">
+<details class="group p-4 rounded-xl bg-surface-container-lowest shadow-sm cursor-pointer">
+<summary class="font-label-lg text-label-lg font-bold text-on-surface flex justify-between items-center list-none">
+                Do I need a pre-formed team before registering?
+                <span class="material-symbols-outlined text-outline transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2 pt-2">
+                No! Many participants register solo. We host a structured team formation mixer on Day 1 where you will meet teammates based on mutual track interests and complementary skills.
+              </p>
+</details>
+<details class="group p-4 rounded-xl bg-surface-container-lowest shadow-sm cursor-pointer">
+<summary class="font-label-lg text-label-lg font-bold text-on-surface flex justify-between items-center list-none">
+                What if I am a beginner with zero AI background?
+                <span class="material-symbols-outlined text-outline transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2 pt-2">
+                The hackathon is beginner-friendly. We offer starter templates, non-technical tracks (UX/Product Strategy), and dedicated mentor stations to get you up and running within hours.
+              </p>
+</details>
+<details class="group p-4 rounded-xl bg-surface-container-lowest shadow-sm cursor-pointer">
+<summary class="font-label-lg text-label-lg font-bold text-on-surface flex justify-between items-center list-none">
+                Is participation completely free for students?
+                <span class="material-symbols-outlined text-outline transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2 pt-2">
+                Yes, 100% free. Thanks to campus department sponsorship and industry partners, all meals, energy drinks, API access credits, and event swag are covered.
+              </p>
+</details>
+</div>
+</section>
+</div>
+<!-- Right Column: Interactive Sticky Registration Engine (4 cols) -->
+<div class="lg:col-span-4 flex flex-col gap-6 sticky top-20">
+<!-- Primary Action Box: Active 1-Click Ticket State -->
+<div class="p-6 rounded-2xl bg-surface-container-lowest shadow-lg flex flex-col gap-5" id="unregisteredBox">
+<div class="flex items-center justify-between pb-3">
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block">Admission Type</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">General Student</span>
+</div>
+<div class="text-right">
+<span class="font-headline-md text-headline-md font-bold text-primary">FREE</span>
+<span class="font-label-sm text-label-sm text-outline block">$0.00 USD</span>
+</div>
+</div>
+<!-- Fast Ticket Metadata Specs -->
+<div class="flex flex-col gap-2.5 p-3.5 rounded-xl bg-surface-container-low">
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base text-primary">badge</span>
+                Eligibility
+              </span>
+<span class="font-semibold text-on-surface">All Enrolled Students</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base text-primary">fastfood</span>
+                Catering Included
+              </span>
+<span class="font-semibold text-on-surface">6 Meals + Snacks</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base text-primary">chair</span>
+                Seats Left
+              </span>
+<span class="font-bold text-secondary">88 spots remaining</span>
+</div>
+</div>
+<!-- Capacity Bar Mini -->
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between font-label-sm text-label-sm text-outline">
+<span>Capacity utilization</span>
+<span class="font-bold text-on-surface">312 / 400</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 78%;"></div>
+</div>
+</div>
+<!-- Primary CTA Button -->
+<button class="w-full py-3.5 px-6 rounded-lg bg-primary hover:bg-tertiary text-on-primary font-label-lg text-label-lg font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2" id="btnOpenModal" type="button">
+<span class="material-symbols-outlined text-xl">how_to_reg</span>
+            Register Now (1-Click)
+          </button>
+<p class="font-body-sm text-body-sm text-outline text-center">
+            Submits authenticated <code class="font-mono text-primary font-semibold">POST /api/registrations</code> with concurrency guard.
+          </p>
+</div>
+<!-- Secondary Container: Already Registered State Preview -->
+<div class="p-6 rounded-2xl bg-surface-container-low shadow-sm flex flex-col gap-4" id="alreadyRegisteredBox">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<h3 class="font-label-md text-label-md uppercase tracking-wider text-on-surface font-bold">Registered State Preview</h3>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-2xl font-bold" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="min-w-0">
+<span class="font-label-sm text-label-sm uppercase font-bold text-secondary">Confirmed Attendee</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold truncate">You're attending!</h4>
+</div>
+</div>
+<div class="p-3 rounded-lg bg-surface-container text-body-sm flex justify-between items-center">
+<div>
+<span class="text-outline text-xs block">Registration ID</span>
+<span class="font-mono font-bold text-primary">#REG-84920</span>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface font-bold shadow-sm">Verified QR Ready</span>
+</div>
+<!-- Calendar Export CTAs -->
+<div class="grid grid-cols-2 gap-2 pt-1">
+<button class="py-2 px-3 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold transition-colors flex items-center justify-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-sm">event</span>
+                Google Cal
+              </button>
+<button class="py-2 px-3 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold transition-colors flex items-center justify-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-sm">today</span>
+                Apple iCal
+              </button>
+</div>
+<!-- Cancel Button -->
+<button class="w-full py-2 px-3 rounded-lg text-error hover:bg-error-container hover:text-on-error-container font-label-sm text-label-sm font-semibold transition-colors text-center" onclick="alert('Canceling will free your seat back to the general collegiate pool.')" type="button">
+              Cancel Registration
+            </button>
+</div>
+</div>
+<!-- Technical Endpoint Spec Card (Developer / Campus Node Note) -->
+<div class="p-4 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-2">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base text-outline">dns</span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface uppercase tracking-wider">API Architecture</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Built with duplicate prevention checks (<code class="text-primary font-mono text-xs">409 Conflict</code>) on simultaneous student submissions, ensuring atomic seat decrement.
+          </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Registration Confirmation Dialog / Modal -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-inverse-surface/50 backdrop-blur-sm hidden transition-opacity duration-200" id="registrationModal">
+<div class="w-full max-w-lg rounded-2xl bg-surface-container-lowest shadow-xl overflow-hidden flex flex-col animate-in fade-in zoom-in-95">
+<!-- Modal Header -->
+<div class="p-6 bg-surface-container-low flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed text-on-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">confirmation_number</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Confirm Your Registration</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Annual Intercollegiate Hackathon 2025</p>
+</div>
+</div>
+<button aria-label="Close dialog" class="p-1 rounded-lg text-outline hover:text-on-surface transition-colors" id="btnCloseModal">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</div>
+<!-- Modal Body -->
+<div class="p-6 flex flex-col gap-4">
+<!-- Attendee Profile Snapshot -->
+<div class="p-3.5 rounded-xl bg-surface-container flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-primary text-on-primary font-bold font-label-md flex items-center justify-center">
+              MP
+            </div>
+<div>
+<p class="font-label-md text-label-md font-bold text-on-surface">Maya Patel</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">maya.patel@campus.edu</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-lowest text-primary font-bold">
+            CS Junior · #928371
+          </span>
+</div>
+<!-- Ticket Summary Breakdown -->
+<div class="flex flex-col gap-2 font-body-sm text-body-sm">
+<div class="flex justify-between text-on-surface-variant">
+<span>Pass Type:</span>
+<span class="font-semibold text-on-surface">48h In-Person All Access</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span>Hack Lounge Workspace:</span>
+<span class="font-semibold text-on-surface">Included (Building 4, Lab A)</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span>Hardware Kit Allocation:</span>
+<span class="font-semibold text-on-surface">ESP32 / Edge Dev Pack</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span>Fee:</span>
+<span class="font-bold text-primary">$0.00 (Campus Subsidized)</span>
+</div>
+</div>
+<!-- Terms & Code of Conduct Agreement -->
+<div class="p-3 rounded-lg bg-surface-container-low flex items-start gap-2.5">
+<input checked="" class="mt-1 w-4 h-4 rounded text-primary focus:ring-primary accent-primary" id="termsCheck" type="checkbox"/>
+<label class="font-body-sm text-body-sm text-on-surface-variant cursor-pointer" for="termsCheck">
+            I agree to the <span class="text-primary font-semibold">Campus Code of Conduct</span>, safety guidelines, and acknowledge attendance commitments for meal allocations.
+          </label>
+</div>
+</div>
+<!-- Modal Footer -->
+<div class="p-6 bg-surface-container-low flex items-center justify-end gap-3">
+<button class="py-2.5 px-4 rounded-lg bg-surface-container-lowest text-on-surface font-label-md text-label-md font-semibold hover:bg-surface-container transition-colors" id="btnCancelModal" type="button">
+          Cancel
+        </button>
+<button class="py-2.5 px-6 rounded-lg bg-primary hover:bg-tertiary text-on-primary font-label-md text-label-md font-bold shadow-md transition-all flex items-center gap-2" id="btnConfirmSubmit" type="button">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+          Confirm Registration
+        </button>
+</div>
+</div>
+</div>
+<!-- Interactive JavaScript Controller -->
+<script>
+    (function initEventDetails() {
+      const modal = document.getElementById('registrationModal');
+      const openBtn = document.getElementById('btnOpenModal');
+      const closeBtn = document.getElementById('btnCloseModal');
+      const cancelBtn = document.getElementById('btnCancelModal');
+      const confirmSubmit = document.getElementById('btnConfirmSubmit');
+      const toast = document.getElementById('toastSuccess');
+
+      // Modal open/close actions
+      const openModal = () => modal.classList.remove('hidden');
+      const closeModal = () => modal.classList.add('hidden');
+
+      if (openBtn) openBtn.addEventListener('click', openModal);
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      if (cancelBtn) cancelBtn.addEventListener('click', closeModal);
+
+      // Dismiss modal on background click
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+
+      // Submit simulation (triggers 201 feedback & smooth UI update)
+      if (confirmSubmit) {
+        confirmSubmit.addEventListener('click', () => {
+          confirmSubmit.disabled = true;
+          confirmSubmit.innerHTML = `<span class="material-symbols-outlined animate-spin text-lg">progress_activity</span> Confirming...`;
+
+          setTimeout(() => {
+            closeModal();
+            confirmSubmit.disabled = false;
+            confirmSubmit.innerHTML = `<span class="material-symbols-outlined text-lg">check_circle</span> Confirm Registration`;
+
+            // Display feedback banner
+            if (toast) {
+              toast.classList.remove('hidden');
+              toast.scrollIntoView({ behavior: 'smooth' });
+            }
+          }, 600);
+        });
+      }
+    })();
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest border-t border-surface-container mt-auto"><div class="max-w-7xl mx-auto px-6 lg:px-12 py-12"><div class="grid grid-cols-1 md:grid-cols-4 gap-space-xl"><div class="flex flex-col gap-space-sm"><div class="flex items-center gap-space-sm"><img alt="EventHub Logo" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VFxHpkZAzvW_NsyuXhzUCP8dUwQYx43xXmJAWVKHLxoKfE6PSPDbH_2ksc_NKUzSl5DIq-YlLy9d41Q4FolQh7YV7_MmH6DaMkIxBX0cnuqrZj3nyImG-SM-JOZOfWCas9mLU-oH8tOwhkcpnye5_1SXCCc0fsUACFa-YGIOrcsrEzcfhOKYHmx2umdNgyiUtbhMPmPZiMN9kBkRuQgYw2JHnNSYhnxsyVx16FqOt4mw"/><span class="font-headline-sm text-headline-sm text-primary font-bold">EventHub</span></div><p class="font-body-sm text-body-sm text-on-surface-variant">The unified collegiate campus engagement platform connecting student organizations, departments, and active campus communities.</p></div><div><h4 class="font-label-md text-label-md uppercase tracking-wider text-on-surface mb-space-sm">Campus Discovery</h4><ul class="flex flex-col gap-space-xs"><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a href="#">Academic Lectures</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a href="#">Student Clubs & Orgs</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a href="#">Campus Athletics</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a href="#">Career & Workshops</a></li></ul></div><div><h4 class="font-label-md text-label-md uppercase tracking-wider text-on-surface mb-space-sm">Organizers</h4><ul class="flex flex-col gap-space-xs"><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a href="#">Create New Event</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a href="#">Venue Booking</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a href="#">Attendee Analytics</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a href="#">Campus Guidelines</a></li></ul></div><div><h4 class="font-label-md text-label-md uppercase tracking-wider text-on-surface mb-space-sm">Resources</h4><ul class="flex flex-col gap-space-xs"><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a href="#">Student Help Desk</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a href="#">Security & Safety</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a href="#">Accessibility Services</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a href="#">Privacy Policy</a></li></ul></div></div><div class="mt-12 pt-6 border-t border-surface-container flex flex-col sm:flex-row items-center justify-between gap-space-sm"><p class="font-body-sm text-body-sm text-outline">© 2025 EventHub Collegiate Network. All rights reserved.</p><div class="flex items-center gap-space-md"><span class="font-label-sm text-label-sm text-outline">Campus Portal v2.4</span></div></div></div></footer></body></html>

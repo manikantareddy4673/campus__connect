@@ -11,3 +11,5 @@ services:
         sync: false
       - key: SUPABASE_PUBLISHABLE_KEY
         sync: false
+      - key: FRONTEND_ORIGINS
+        sync: false
