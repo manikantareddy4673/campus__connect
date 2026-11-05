@@ -28,7 +28,7 @@ if not SUPABASE_URL or not SUPABASE_PUBLISHABLE_KEY:
         "SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY must be configured."
     )
 
-app = FastAPI(title="EventHub API", version="2.0.0")
+app = FastAPI(title="EventHub API", version="2.1.0")
 allowed_origins = [
     origin.strip()
     for origin in os.environ.get(
@@ -157,7 +157,12 @@ def database_error(error: APIError, table: str) -> HTTPException:
     if error.code == "PGRST205":
         return HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail=f"Supabase cannot find public.{table}. Apply backend/migrations/001_eventhub_schema.sql to the configured project.",
+            detail=(
+                f"Supabase cannot find public.{table}. This API uses only the "
+                "users, events, and registrations tables shown in the EventHub "
+                "schema. Apply backend/migrations/001_eventhub_schema.sql to "
+                "the Supabase project configured in Render."
+            ),
         )
     if error.code == "42501":
         return HTTPException(
@@ -203,7 +208,7 @@ def root() -> dict[str, str]:
 
 @app.get("/healthz")
 def health_check() -> dict[str, str]:
-    return {"status": "ok"}
+    return {"status": "ok", "framework": "FastAPI", "version": app.version}
 
 
 @app.post("/api/auth/signup", status_code=status.HTTP_201_CREATED)

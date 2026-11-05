@@ -209,7 +209,6 @@ function App() {
       try {
         const record = await api.createRegistration(session.access_token, {
           event_id: event.id,
-          payment_method: null,
         })
         const registration = {
           ...event,
