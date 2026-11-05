@@ -218,7 +218,25 @@ function App() {
           payment_method: record.payment_method,
           amount_due: record.amount_due,
           registered_at: record.created_at,
+          registered_count: record.registered_count,
+          seats_left: record.seats_left,
         }
+        setEvents((current) => current.map((item) =>
+          item.id === event.id
+            ? {
+                ...item,
+                registered_count: record.registered_count,
+                seats_left: record.seats_left,
+              }
+            : item,
+        ))
+        setActiveEvent((current) => current?.id === event.id
+          ? {
+              ...current,
+              registered_count: record.registered_count,
+              seats_left: record.seats_left,
+            }
+          : current)
         setRegistrations((current) => [registration, ...current.filter((item) => item.id !== event.id)])
         setNotice(`Registration confirmed — ${record.confirmation_code}`)
         navigate('registrations')

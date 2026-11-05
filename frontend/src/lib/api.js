@@ -33,6 +33,7 @@ async function request(path, { method = 'GET', token, body } = {}) {
 
 export const api = {
   getEvents: () => request('/api/events'),
+  getEvent: (eventId) => request(`/api/events/${encodeURIComponent(eventId)}`),
   signIn: (credentials) => request('/api/auth/login', { method: 'POST', body: credentials }),
   signUp: (credentials) => request('/api/auth/signup', { method: 'POST', body: credentials }),
   getMyRegistrations: (token) => request('/api/me/registrations', { token }),

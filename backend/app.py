@@ -386,7 +386,7 @@ def create_registration(
     try:
         event = (
             client.table("events")
-            .select("event_id")
+            .select("event_id,capacity")
             .eq("event_id", event_id)
             .limit(1)
             .execute()
@@ -419,7 +419,10 @@ def create_registration(
             detail="Registration insert returned no row.",
         )
     registration = result.data[0]
+    registered_count = get_registration_counts(client, [event_id]).get(event_id, 0)
     registration["confirmation_code"] = confirmation_code(registration["id"])
+    registration["registered_count"] = registered_count
+    registration["seats_left"] = max(0, int(event.data[0]["capacity"]) - registered_count)
     return registration
 
 
