@@ -40,11 +40,17 @@ const attendeeSample = [
 ]
 
 function formatDate(value, options = { month: 'short', day: 'numeric', year: 'numeric' }) {
-  return new Intl.DateTimeFormat('en', options).format(new Date(value))
+  const date = value ? new Date(value) : null
+  return date && !Number.isNaN(date.getTime())
+    ? new Intl.DateTimeFormat('en', options).format(date)
+    : 'Date to be announced'
 }
 
 function formatTime(value) {
-  return new Intl.DateTimeFormat('en', { hour: 'numeric', minute: '2-digit' }).format(new Date(value))
+  const date = value ? new Date(value) : null
+  return date && !Number.isNaN(date.getTime())
+    ? new Intl.DateTimeFormat('en', { hour: 'numeric', minute: '2-digit' }).format(date)
+    : 'Time TBD'
 }
 
 function formatPrice(price) {
@@ -52,21 +58,25 @@ function formatPrice(price) {
 }
 
 function getCapacity(event) {
-  const capacity = Number(event.capacity) || Number(event.seats_left) || 100
-  const left = Math.max(0, Number(event.seats_left) || 0)
-  return { capacity, left, registered: Math.max(0, capacity - left), percent: Math.min(100, Math.round(((capacity - left) / capacity) * 100)) }
+  const hasCapacity = event.capacity !== null && event.capacity !== undefined
+  const capacity = hasCapacity ? Math.max(0, Number(event.capacity)) : Number(event.seats_left) || 100
+  const left = Math.min(capacity, Math.max(0, Number(event.seats_left ?? capacity)))
+  const registered = Math.max(0, capacity - left)
+  return { capacity, left, registered, percent: capacity ? Math.min(100, Math.round((registered / capacity) * 100)) : 100 }
 }
 
 function normalizeEvent(event, index = 0) {
   return {
     ...event,
-    starts_at: event.starts_at || event.date || new Date(Date.now() + (index + 2) * 86400000).toISOString(),
+    id: event.id || event.event_id,
+    starts_at: event.starts_at || event.date || null,
     ends_at: event.ends_at || event.end_date || null,
     venue: event.venue || event.location || 'Campus venue',
     category: event.category || 'Campus',
     organizer: event.organizer || 'Campus Community',
     description: event.description || 'Meet your campus community and take part in something memorable.',
     image_url: event.image_url || demoEvents[index % demoEvents.length].image_url,
+    price: Number(event.price ?? 0),
   }
 }
 

@@ -26,7 +26,7 @@ async function request(path, { method = 'GET', token, body } = {}) {
 
   const data = await response.json().catch(() => null)
   if (!response.ok) {
-    throw new ApiError(data?.error || `Backend request failed (${response.status}).`, response.status)
+    throw new ApiError(data?.error || data?.detail || `Backend request failed (${response.status}).`, response.status)
   }
   return data
 }

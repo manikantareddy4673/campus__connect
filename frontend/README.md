@@ -4,13 +4,18 @@ Responsive React + Vite frontend based on the screens in `../design`.
 
 ## Run locally
 
-Configure `backend/.env` using `backend/.env.example`, then start Flask in a
+First apply `backend/migrations/001_eventhub_schema.sql` in the SQL Editor for
+the Supabase project configured in `backend/.env`. This creates the tables and
+row-level security policies from the supplied schema diagram and synchronizes
+Supabase Auth users into `public.users`.
+
+Configure `backend/.env` using `backend/.env.example`, then start FastAPI in a
 separate terminal:
 
 ```powershell
 cd backend
 pip install -r requirements.txt
-python app.py
+uvicorn app:app --reload --port 5000
 ```
 
 Start the frontend:
@@ -22,17 +27,23 @@ npm run dev
 ```
 
 The Vite development server proxies `/api` requests to `http://127.0.0.1:5000`.
-Set `VITE_API_BASE_URL` in a local `.env` file when the Flask API runs elsewhere.
-Set the backend's `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY` before starting Flask.
+Set `VITE_API_BASE_URL` in a local `.env` file when the FastAPI server runs elsewhere.
+Set the backend's `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY` before starting FastAPI.
 If the API is unavailable, the UI uses sample events and keeps registrations in preview-only memory.
 
-When the API is connected, signup and login use Supabase Auth through Flask, and
-authenticated registrations are created and loaded from `campus_registrations`.
+When the API is connected, signup and login use Supabase Auth through FastAPI, and
+authenticated registrations are created and loaded from `public.registrations`.
 The session token is kept in `sessionStorage` and is removed when signing out.
 `GET /api/registrations` returns only the signed-in user's registrations;
 `POST /api/registrations` creates one and requires a bearer token.
-Persistent cancellation, organizer permissions, and payment processing are not
-implemented by the current database schema/API.
+The diagram schema does not include scheduled event dates, venue, or payment
+fields, so those details display as unavailable until the schema is extended.
+
+The API also exposes `GET /`, `GET /healthz`, `GET /api/events`,
+`GET /api/events/{event_id}`, `POST /api/events`, and organizer-only
+`GET /api/events/{event_id}/registrations`. Assign the `organizer` role to an
+account in `public.users` before using `POST /api/events`. FastAPI's interactive
+API docs are available at `/docs`.
 
 ## Deploy to Vercel
 
