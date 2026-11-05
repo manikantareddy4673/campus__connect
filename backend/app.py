@@ -83,6 +83,11 @@ def index() -> str:
     return html
 
 
+@app.get("/healthz")
+def health_check() -> Response:
+    return jsonify({"status": "ok"})
+
+
 @app.get("/api/events")
 def list_events() -> Response | tuple[Response, int]:
     try:
@@ -224,4 +229,8 @@ def get_event_registrations(event_id: str) -> Response | tuple[Response, int]:
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", "5000")),
+        debug=False,
+    )
