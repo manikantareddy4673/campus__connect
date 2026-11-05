@@ -340,6 +340,7 @@ def create_registration() -> Response | tuple[Response, int]:
     return jsonify(response.data[0]), 201
 
 
+@app.get("/api/registrations")
 @app.get("/api/me/registrations")
 def get_my_registrations() -> Response | tuple[Response, int]:
     client, user_id, auth_error = get_authenticated_context()

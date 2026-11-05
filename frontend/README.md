@@ -29,6 +29,8 @@ If the API is unavailable, the UI uses sample events and keeps registrations in 
 When the API is connected, signup and login use Supabase Auth through Flask, and
 authenticated registrations are created and loaded from `campus_registrations`.
 The session token is kept in `sessionStorage` and is removed when signing out.
+`GET /api/registrations` returns only the signed-in user's registrations;
+`POST /api/registrations` creates one and requires a bearer token.
 Persistent cancellation, organizer permissions, and payment processing are not
 implemented by the current database schema/API.
 

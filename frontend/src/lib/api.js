@@ -35,7 +35,7 @@ export const api = {
   getEvents: () => request('/api/events'),
   signIn: (credentials) => request('/api/auth/login', { method: 'POST', body: credentials }),
   signUp: (credentials) => request('/api/auth/signup', { method: 'POST', body: credentials }),
-  getMyRegistrations: (token) => request('/api/me/registrations', { token }),
+  getMyRegistrations: (token) => request('/api/registrations', { token }),
   createRegistration: (token, registration) =>
     request('/api/registrations', { method: 'POST', token, body: registration }),
 }
